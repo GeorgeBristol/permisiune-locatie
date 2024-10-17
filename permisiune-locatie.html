@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Permite Accesul la Locație</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f7f9fc; /* Fundal deschis */
+      color: #333; /* Culoare text */
+    }
+
+    h1 {
+      color: #4CAF50; /* Verde pentru titlu */
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.5em; /* Dimensiune medie pentru subtitlu */
+      margin-bottom: 20px; /* Spațiu sub subtitlu */
+    }
+
+    p {
+      font-size: 1.1em; /* Dimensiune medie pentru text */
+      margin: 20px auto; /* Spațiu deasupra și dedesubt */
+      max-width: 600px; /* Lățimea maximă a textului */
+      line-height: 1.6; /* Între rânduri */
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #4CAF50; /* Verde pentru buton */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049; /* Verde mai închis când treci cu mouse-ul peste buton */
+    }
+
+    .location-message {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #2E8B57; /* Verde închis pentru mesaj */
+    }
+
+    footer {
+      margin-top: 50px; /* Spațiu deasupra footer-ului */
+      font-size: 0.9em; /* Dimensiune mică pentru textul de footer */
+      color: #777; /* Culoare gri pentru footer */
+    }
+  </style>
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendLocation, showError);
+      } else {
+        alert("Geolocația nu este suportată de acest browser.");
+      }
+    }
+
+    function sendLocation(position) {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      document.body.innerHTML += `<p class="location-message">Locația ta: Latitudine: ${latitude}, Longitudine: ${longitude}</p>`;
+    }
+
+    function showError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          alert("Ai refuzat accesul la locație.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Informațiile despre locație nu sunt disponibile.");
+          break;
+        case error.TIMEOUT:
+          alert("Cererea de locație a expirat.");
+          break;
+        default:
+          alert("A apărut o eroare necunoscută.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Permite Accesul la Locația Ta</h1>
+  <h2>Îmbunătățește Securitatea și Performanța de Livrare</h2>
+  
+  <p>Prin apăsarea butonului de mai jos, ne oferiți acces la locația dumneavoastră, ceea ce ne va ajuta să:</p>
+  <ul style="list-style-type: none; padding: 0;">
+    <li>✅ **Îmbunătățim timpii de livrare** prin găsirea celor mai rapide rute.</li>
+    <li>✅ **Asigurăm siguranța** șoferului prin urmărirea locației în timp real, prevenind incidentele neplăcute.</li>
+    <li>✅ **Oferim suport** rapid și eficient în cazul unor probleme de livrare.</li>
+  </ul>
+
+  <button onclick="getLocation()">Dă permisiune</button>
+  
+  <footer>
+    <p>Mulțumim pentru colaborare!</p>
+  </footer>
+</body>
+</html>
